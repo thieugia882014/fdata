@@ -1,10 +1,17 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
+<%@ page import="com.example.fdata.entity.Account" %>
 <%@ page import="com.example.fdata.entity.Product" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="com.example.fdata.model.ProductModel" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.util.HashSet" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%
+    Account account = (Account) session.getAttribute("currentAccount");
+    boolean isLoggedIn = false;
+    if (account != null){
+        isLoggedIn = true;
+    }
+    String currentUsername = account == null ? "Guest" : account.getUsername();
+
     List<Product> list = (List<Product>) request.getAttribute("listObj");
     HashSet<Product> recentView = (HashSet<Product>) session.getAttribute("recentView");
     if (recentView==null){
@@ -52,6 +59,19 @@
 <h1>List Student</h1>
 <div class="w3-container">
     <h2>Tab as a Card</h2>
+
+    <%
+        if (isLoggedIn){
+    %>
+    <strong>This is me: <%=currentUsername%>
+        <a href="/account/logout">(Logout)</a></strong>
+    <%}else {%>
+    <strong>T
+        <a href="/account/login">Login</a></strong>
+    <%
+        }
+    %>
+
     <a href="/products/create" class="w3-btn w3-black">Create new products</a>
     <p>The w3-card-* classes makes the table look like a card (add shadow):</p>
 </div>
@@ -62,6 +82,7 @@
         <th>Name</th>
         <th>amount</th>
         <th>Price</th>
+        <th>details</th>
     </tr>
     <%
         for (int i = 0; i < list.size(); i++) {
@@ -72,13 +93,13 @@
         </td>
         <td><%=obj.getName()%>
         </td>
-        <td><img src="<%=obj.getamount()%>" style="width: 150px;" alt=""></td>
+        <td><%=obj.getAmount()%></td>
         <td><%=obj.getPrice()%>
         </td>
+        <td><%=obj.getDetails()%></td>
+
         <td><a href="/products/detail?id=<%=obj.getId()%>">Detail</a>&nbsp;&nbsp;|&nbsp;&nbsp;
         <td/>
-        <td><a href="/products/edit?id=<%=obj.getId()%>">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;</td>
-        <td><a href="/products/delete?id=<%=obj.getId()%>" class="btn-delete">Delete</a>&nbsp;&nbsp;|&nbsp;&nbsp;</td>
     </tr>
     <%
         }

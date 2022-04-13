@@ -17,11 +17,12 @@ public class ProductModel {
             Connection connection = ConnectionHelper.getConnection();
             PreparedStatement preparedStatement =
                     connection.prepareStatement(
-                            "insert into products (name,amount, price) value (?,?,?)"
+                            "insert into products (name,amount, price,details) value (?,?,?,?)"
                     );
             preparedStatement.setString(1, obj.getName());
-            preparedStatement.setInt(2, obj.getamount());
+            preparedStatement.setInt(2, obj.getAmount());
             preparedStatement.setDouble(3, obj.getPrice());
+            preparedStatement.setString(4,obj.getDetails());
             preparedStatement.execute();
             return true;
         } catch (SQLException | ClassNotFoundException e) {
@@ -34,7 +35,7 @@ public class ProductModel {
         List<Product> ListObj = new ArrayList<>();
         try {
             Connection connection = ConnectionHelper.getConnection();
-            String sqlSelect = "Select * from products where status !=2";
+            String sqlSelect = "Select * from products ";
             PreparedStatement statement = connection.prepareStatement(sqlSelect);
             ResultSet resultSet = statement.executeQuery(sqlSelect);
             while (resultSet.next()){
@@ -42,8 +43,8 @@ public class ProductModel {
                 String name = resultSet.getString("name");
                 int amount = resultSet.getInt("amount");
                 double price = resultSet.getDouble("price");
-                int status = resultSet.getInt("status");
-                Product obj = new Product(id,name,amount,price,status);
+                String details = resultSet.getString("details");
+                Product obj = new Product(id,name,amount,price,details);
                 ListObj.add(obj);
             }
         }catch (Exception e) {
@@ -65,8 +66,8 @@ public class ProductModel {
                 String name = resultSet.getString("name");
                 int amount = resultSet.getInt("amount");
                 double price = resultSet.getDouble("price");
-                int status = resultSet.getInt("status");
-                 obj = new Product(id,name,amount,price,status);
+                String details = resultSet.getString("details");
+                 obj = new Product(id,name,amount,price,details);
             }
         }catch (Exception e) {
             System.err.println(e.getMessage());

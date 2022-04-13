@@ -22,8 +22,10 @@ public class CreateProductServiet extends HttpServlet {
         String name = req.getParameter("name");
         int amount = Integer.parseInt(req.getParameter("amount"));
         double price = Double.parseDouble(req.getParameter("price"));
+        String details = req.getParameter("details");
+
         ProductModel model = new ProductModel();
-        Product obj = new Product(name, amount, price);
+        Product obj = new Product(name, amount, price,details );
         if (!obj.isvalid()) {
             req.setAttribute("errors", obj.getErrors());
             req.getRequestDispatcher("/admin/products/form.jsp").forward(req, resp);

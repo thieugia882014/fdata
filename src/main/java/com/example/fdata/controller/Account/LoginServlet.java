@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 
 public class LoginServlet extends HttpServlet {
     private AccountModel accountModel = new AccountModel();
-    private static final int MAX_COUNT = 1;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,6 +28,8 @@ public class LoginServlet extends HttpServlet {
             resp.getWriter().println("Invalid information!");
             return;
         }
+        req.getSession().setAttribute("currentAccount",account);
+        resp.sendRedirect("/products/list");
 
     }
 }

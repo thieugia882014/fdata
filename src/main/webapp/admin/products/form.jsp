@@ -44,7 +44,10 @@
         <label class="w3-text-blue"><b>Price</b></label>
         <input class="w3-input w3-border" name="price" value="0" type="number">
     </p>
-
+    <p>
+        <label class="w3-text-blue"><b>details</b></label>
+        <input class="w3-input w3-border" name="details"  type="text">
+    </p>
     <p>
         <button class="w3-btn w3-blue">submit</button>
     </p>

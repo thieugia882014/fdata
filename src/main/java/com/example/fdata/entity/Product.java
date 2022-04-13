@@ -10,23 +10,24 @@ public class Product {
     private String name;
     private int amount;
     private double price;
-    private int status;
+    private String details;
 
     public Product() {
     }
 
-    public Product(String name, int amount, double price) {
+    public Product(String name, int amount, double price,String details) {
         this.name = name;
         this.amount = amount;
         this.price = price;
+        this.details = details;
     }
 
-    public Product(int id, String name, int amount, double price, int status) {
+    public Product(int id, String name, int amount, double price, String details) {
         this.id = id;
         this.name = name;
         this.amount = amount;
         this.price = price;
-        this.status = status;
+        this.details = details;
     }
     public void checkValid(){
         this.error = new HashMap<>();
@@ -68,8 +69,16 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", amount='" + amount + '\'' +
                 ", price=" + price +
-                ", status=" + status +
+                ", details=" + details +
                 '}';
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public int getId() {
@@ -88,11 +97,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getamount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setamount(int amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -102,13 +111,5 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 }

@@ -49,15 +49,6 @@
 <!--        <url-pattern>/products/delete</url-pattern>-->
 <!--    </servlet-mapping>-->
     <servlet>
-        <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>com.example.fdata.controller.Account.RegisterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/account/register</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.example.fdata.controller.Account.LoginServlet</servlet-class>
     </servlet>

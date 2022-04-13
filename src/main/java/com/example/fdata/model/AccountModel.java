@@ -42,7 +42,7 @@ public class AccountModel {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 String usernameDatabase = resultSet.getString("username");
-                String passwordHash = resultSet.getString("passwordHash");
+                String passwordHash = resultSet.getString("password");
                 Account account = new Account();
                 account.setUsername(usernameDatabase);
                 account.setPasswordHash(passwordHash);
